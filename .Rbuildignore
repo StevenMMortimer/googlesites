@@ -1,0 +1,12 @@
+.Rprofile
+^.*\.RData$
+^.*\.Rhistory$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^\.httr-oauth$
+^cran-comments\.md$
+^README\.Rmd$
+^README-.*\.png$
+^.git$
+^example-site

@@ -1,0 +1,28 @@
+Package: googlesites
+Title: Google Sites API from R
+Version: 0.0.1
+Date: 2017-06-01
+Description: A tool to interact with the Google Sites API from R.
+Author: Steven Mortimer [aut, cre]
+Maintainer: Steven Mortimer <ReportMort@gmail.com>
+URL: https://github.com/ReportMort/googlesites
+BugReports: https://github.com/ReportMort/googlesites/issues
+Depends:
+    R (>= 3.1.0)
+License: MIT + file LICENSE
+LazyData: true
+Imports:
+    httr (>= 1.0.0),
+    xml2 (>= 1.0.0),
+    curl (>= 0.9.7),
+    googleAuthR,
+    stringi,
+    dplyr,
+    plyr,
+    mime
+Suggests:
+    knitr,
+    testthat,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

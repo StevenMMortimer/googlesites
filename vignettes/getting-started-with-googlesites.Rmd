@@ -1,0 +1,120 @@
+---
+title: "Getting Started with googlesites"
+author: "Steven Mortimer"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 4
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Getting Started with googlesites}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  purl = NOT_CRAN,
+  eval = NOT_CRAN
+)
+```
+
+First, we load `googlesites` and specify the domain and site name we'll be working 
+with. Creating a completely new site is only available to GSuite users (formerly 
+known as Google Apps), so you should have already created this classic site using the 
+web UI and know the domain and site name to plug into the package options. These 
+options allow you to edit the site without specifying it explicitly on each request.
+
+```{r load-package}
+library(googlesites)
+options(googlesites.site_domain = "site")
+options(googlesites.site_name = "testrgooglsites")
+```
+
+Second, you need to use the `googleAuthR` package to get your OAuth2.0 token 
+to make edits to your site from the R script.
+
+```{r authenticate}
+library(googleAuthR)
+options(googleAuthR.scopes.selected = "https://sites.google.com/feeds/")
+gar_auth()
+```
+
+### Adding a Page
+
+The package comes with ... 
+
+```{r adding-page}
+sample_html <- system.file("extdata", "sample-doc.html", package="googlesites")
+add_html_page(page_xhtml_source = sample_html,
+              page_title = 'Post with GIF',
+              page_custom_url = 'post-with-gif',
+              overwrite=TRUE)
+```
+
+### Finding Content
+
+The package comes with ... 
+
+```{r finding-content}
+find_content(value_to_match='Post with GIF', 
+             field_to_match='title', 
+             content_category='webpage')
+```
+
+### Adding an Attachment
+
+You can ...
+
+```{r adding-attachment, eval=FALSE}
+pdf_cheatsheet <- 'https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf'
+download.file(pdf_cheatsheet, 'rmarkdown-cheatsheet-2.0.pdf', mode="wb")
+
+# uploading something to that page
+upload_file_to_site(local_file_path = "rmarkdown-cheatsheet-2,0.pdf", 
+                    file_summary = 'R Markdown is an authoring format that makes it 
+                    easy to write reusable reports with R. You combine your R code 
+                    with narration written in markdown (an easy-to-write plain text format) 
+                    and then export the results as an html, pdf, or Word file. You can 
+                    even use R Markdown to build interactive documents and slideshows. 
+                    Updated 02/16.',
+                    parent_page_id = find_content(value_to_match='Post with GIF', 
+                                                  field_to_match='title')$id)
+```
+
+```{r real-adding-attachment, include=FALSE}
+upload_file_to_site(local_file_path = system.file("extdata", "files", "rmarkdown-cheatsheet-2.0.pdf", package="googlesites"), 
+                    file_summary = 'R Markdown is an authoring format that makes it 
+                    easy to write reusable reports with R. You combine your R code 
+                    with narration written in markdown (an easy-to-write plain text format) 
+                    and then export the results as an html, pdf, or Word file. You can 
+                    even use R Markdown to build interactive documents and slideshows. 
+                    Updated 02/16.',
+                    parent_page_id = find_content(value_to_match='Post with GIF', 
+                                                  field_to_match='title')$id)
+```
+
+### Deleting Attachment
+
+You can ...
+
+```{r deleting-attachment}
+# deleting the attachment
+delete_content(id = find_content(value_to_match='rmarkdown-cheatsheet-2.0.pdf',
+                                 field_to_match='title', 
+                                 content_category='attachment')$id)
+```
+
+### Deleting Page
+
+You can ...
+
+```{r deleting-page}
+# deleting that page
+delete_content(id = find_content(value_to_match='testwebp',
+                                 field_to_match='title')$id)
+```
