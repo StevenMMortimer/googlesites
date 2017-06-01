@@ -77,7 +77,7 @@ find_content <- function(value_to_match,
                                           category <- x %>% 
                                             xml_find_all('category') %>% 
                                             xml_attr('label') %>%
-                                            paste0(.,collapse="|")
+                                            paste0(collapse="|")
                                           title <- x %>% 
                                             xml_find_all("title") %>% 
                                             xml_text()

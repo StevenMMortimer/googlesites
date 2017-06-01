@@ -4,6 +4,7 @@
 #' will exponential wait times in case there are issues with the API
 #'
 #' @keywords internal
+#' @importFrom stats runif
 #' @param expr an expression to be evaluated with exponential backoff
 #' @param n an integer or number indicating the number of times to execute the function
 #' before completely failing
