@@ -9,10 +9,10 @@
 #' @source utils.R
 #' @param local_file_path A string representing a local file path where the target file exists to be uploaded
 #' @param file_summary A string an (optional) description of the attachment when created
-#' @param parent_page_id A string representing the absolute url that identifies the entry id of a webpage
-#' where the uploaded file will be attached. This should be an absolute url looking like:
-#' https://sites.google.com/feeds/content/mydomain/mysite/6477233125232797597. You can find this url 
-#' by using the \code{\link{find_content}} function
+#' @param parent_page_id A string representing the absolute URL that identifies the entry id of a webpage
+#' where the uploaded file will be attached. This should be an absolute URL looking like:
+#' https://sites.google.com/feeds/content/mydomain/mysite/6477233125232797597. You can find this URL 
+#' by using the \code{\link{find_content}} function.
 #' @param overwrite A logical value. TRUE means that the function will identify and overwrite any
 #' Google Site attachments that exists with the same name (case-insensitive). FALSE means 
 #' fail whenever a conflicting attachment name exists on the site
@@ -149,7 +149,7 @@ upload_file_to_site <- function(local_file_path,
 #' read into R as XML. Google SItes data must be valid XML so this check is performed by \code{xml2::read_xml()}
 #' @param page_parent_page_title A string (optional) with the title of a webpage on the existing Google 
 #' Site where this particular post will be created as a subpage
-#' @param page_template A string (optional) with the name of a template on the existing Google 
+#' @param page_template_id A string (optional) with id of a template on the existing Google 
 #' Site that this particular post will inherit
 #' @param page_title A string (optional) that will be used as the page Title on the created post. If not
 #' specified, then the title will be the same as the HTML file name, excluding .html and santitized to 
@@ -367,15 +367,11 @@ add_html_page <- function(page_xhtml_source,
 #' a Google Sites
 #'
 #' @keywords googlesites documentation wiki api delete webpage announcement attachment
-#' @param value_to_match A string that should match an entry on the target google site
-#' @param field_to_match A string representing the title that the attachment will be created with
-#' @param parent_page_id A string representing the url that identifies the entry id of a webpage
-#' where the uploaded file will be attached to typically formatted as /feeds/content/domainName/siteName/PARENT_ENTRY_ID
-#' @param content_category A string or a collection of strings that specify which types of entries to search against. If 
-#' none are provided then all entries are scanned. This argument acts as a filter to speed up the search process. Accepted 
-#' values are announcement, announcementspage, attachment, comment, filecabinet, listitem, listpage, webpage, webattachment, template
-#' @param site_domain A string representing 'site' or the domain of your Google Apps hosted domain (e.g. example.com)
-#' @param site_name A string representing the webspace name of your site; found in the Site's URL (e.g. myCoolSite)
+#' @param id A string representing the URL that identifies the entry id of content 
+#' to delete. This should be an absolute URL looking like:
+#' https://sites.google.com/feeds/content/mydomain/mysite/6477233125232797597. You can find this URL 
+#' by using the \code{\link{find_content}} function.
+#' @param verbose A logical indicating whether to print messages
 #' @examples
 #' \dontrun{
 #' # delete a webpage with title My Report
@@ -388,8 +384,12 @@ add_html_page <- function(page_xhtml_source,
 #'                                  content_category='attachment')$id)
 #' }
 #' @export
-delete_content <- function(id){
+delete_content <- function(id, 
+                           verbose=TRUE){
   
-  return(invisible(sites_DELETE(url = id)))
+  res <- sites_DELETE(url = id)
   
+  if(verbose) message('Content Succesfully Deleted.')
+  
+  return(invisible(res))
 }

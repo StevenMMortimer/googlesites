@@ -16,10 +16,10 @@ upload_file_to_site(local_file_path, file_summary = "", parent_page_id = "",
 
 \item{file_summary}{A string an (optional) description of the attachment when created}
 
-\item{parent_page_id}{A string representing the absolute url that identifies the entry id of a webpage
-where the uploaded file will be attached. This should be an absolute url looking like:
-https://sites.google.com/feeds/content/mydomain/mysite/6477233125232797597. You can find this url 
-by using the \code{\link{find_content}} function}
+\item{parent_page_id}{A string representing the absolute URL that identifies the entry id of a webpage
+where the uploaded file will be attached. This should be an absolute URL looking like:
+https://sites.google.com/feeds/content/mydomain/mysite/6477233125232797597. You can find this URL 
+by using the \code{\link{find_content}} function.}
 
 \item{overwrite}{A logical value. TRUE means that the function will identify and overwrite any
 Google Site attachments that exists with the same name (case-insensitive). FALSE means 

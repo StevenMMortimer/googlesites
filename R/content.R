@@ -105,21 +105,17 @@ find_content <- function(value_to_match,
     # to workaround, just remove any duplicated ids since that will be unique
     all_entries_metadata <- all_entries_metadata[!duplicated(all_entries_metadata$id), ]
     
-    
-    # determine how the matching should be performed
-    pattern <- value_to_match
-    if(!use_regex_matching){
-      pattern <- paste0('^', value_to_match, '$')
+    # find the matching entries
+    if(use_regex_matching){
+      value_matches <- grepl(value_to_match, all_entries_metadata[,field_to_match])
     } else {
-      pattern <- value_to_match
+      value_matches <- all_entries_metadata[,field_to_match] == value_to_match
     }
     
-    # find the matching entries
     if(is.null(parent_page_id)){
-      entry <- all_entries_metadata[grepl(pattern, all_entries_metadata[,field_to_match]), ]
+      entry <- all_entries_metadata[value_matches, ]
     } else {
-      entry <- all_entries_metadata[grepl(pattern, all_entries_metadata[,field_to_match]) & 
-                                      all_entries_metadata$parent_page_id == parent_page_id, ]
+      entry <- all_entries_metadata[value_matches & all_entries_metadata$parent_page_id == parent_page_id, ]
     }
     
     if(nrow(entry) > 1){
@@ -131,6 +127,7 @@ find_content <- function(value_to_match,
       # we found one id so this will be updated
       if(verbose) message(sprintf('Exactly one entry with %s "%s" was found', field_to_match, value_to_match))
     }
+    
   } else {
     entry <- not_found_df
   }

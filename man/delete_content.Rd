@@ -4,23 +4,15 @@
 \alias{delete_content}
 \title{Delete a page on Google Sites}
 \usage{
-delete_content(id)
+delete_content(id, verbose = TRUE)
 }
 \arguments{
-\item{value_to_match}{A string that should match an entry on the target google site}
+\item{id}{A string representing the URL that identifies the entry id of content 
+to delete. This should be an absolute URL looking like:
+https://sites.google.com/feeds/content/mydomain/mysite/6477233125232797597. You can find this URL 
+by using the \code{\link{find_content}} function.}
 
-\item{field_to_match}{A string representing the title that the attachment will be created with}
-
-\item{parent_page_id}{A string representing the url that identifies the entry id of a webpage
-where the uploaded file will be attached to typically formatted as /feeds/content/domainName/siteName/PARENT_ENTRY_ID}
-
-\item{content_category}{A string or a collection of strings that specify which types of entries to search against. If 
-none are provided then all entries are scanned. This argument acts as a filter to speed up the search process. Accepted 
-values are announcement, announcementspage, attachment, comment, filecabinet, listitem, listpage, webpage, webattachment, template}
-
-\item{site_domain}{A string representing 'site' or the domain of your Google Apps hosted domain (e.g. example.com)}
-
-\item{site_name}{A string representing the webspace name of your site; found in the Site's URL (e.g. myCoolSite)}
+\item{verbose}{A logical indicating whether to print messages}
 }
 \description{
 This function takes a title, url, or Id of a page, then deletes it from 

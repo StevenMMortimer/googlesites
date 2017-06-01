@@ -8,7 +8,7 @@ utils.R
 }
 \usage{
 add_html_page(page_xhtml_source, page_parent_page_title = "",
-  page_template = "", page_title = "", page_custom_url = "",
+  page_template_id = "", page_title = "", page_custom_url = "",
   overwrite = TRUE, site_domain = getOption("googlesites.site_domain"),
   site_name = getOption("googlesites.site_name"))
 }
@@ -19,7 +19,7 @@ read into R as XML. Google SItes data must be valid XML so this check is perform
 \item{page_parent_page_title}{A string (optional) with the title of a webpage on the existing Google 
 Site where this particular post will be created as a subpage}
 
-\item{page_template}{A string (optional) with the name of a template on the existing Google 
+\item{page_template_id}{A string (optional) with id of a template on the existing Google 
 Site that this particular post will inherit}
 
 \item{page_title}{A string (optional) that will be used as the page Title on the created post. If not
