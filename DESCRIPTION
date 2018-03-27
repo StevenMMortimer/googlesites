@@ -1,12 +1,14 @@
 Package: googlesites
 Title: Google Sites API from R
-Version: 0.0.1
-Date: 2017-06-01
-Description: A tool to interact with the Google Sites API from R.
-Author: Steven Mortimer [aut, cre]
-Maintainer: Steven Mortimer <ReportMort@gmail.com>
-URL: https://github.com/ReportMort/googlesites
-BugReports: https://github.com/ReportMort/googlesites/issues
+Version: 0.1.0
+Date: 2018-03-26
+Description: This package connects to the Classic Google Sites API.
+Authors@R: c(
+    person(c("Steven", "M."), "Mortimer", , "reportmort@gmail.com", c("aut", "cre"))
+    )
+URL: https://github.com/StevenMMortimer/googlesites
+BugReports: https://github.com/StevenMMortimer/googlesites/issues
+Encoding: UTF-8
 Depends:
     R (>= 3.1.0)
 License: MIT + file LICENSE

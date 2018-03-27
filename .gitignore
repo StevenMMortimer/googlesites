@@ -3,5 +3,5 @@
 .Rproj.user
 .Rhistory
 .RData
-token.rds
+googlesites_token.rds
 .httr-oauth
