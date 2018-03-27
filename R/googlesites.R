@@ -15,7 +15,7 @@
 #' 
 #' This package attempts to replicate functionality described in the protocol, 
 #' but additional material can be found in the 
-#' \href{https://github.com/reportmort/googlesites}{README} on GitHub
+#' \href{https://github.com/StevenMMortimer/googlesites}{README} on GitHub
 #'
 #' @docType package
 #' @name googlesites

@@ -1,0 +1,11 @@
+pandoc: 1.19.2.1
+pkgdown: 0.1.0.9000
+pkgdown_sha: 17f683717d0a1547f13a08a259b34c58927452d6
+articles:
+  getting-started-with-googlesites: getting-started-with-googlesites.html
+  getting-started-with-googlesites.html: getting-started-with-googlesites.html
+  getting-started-with-googlesites.md: getting-started-with-googlesites.md
+urls:
+  reference: https://stevenmmortimer.github.io/googlesites//reference
+  article: https://stevenmmortimer.github.io/googlesites//articles
+

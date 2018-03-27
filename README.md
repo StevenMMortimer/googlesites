@@ -49,7 +49,8 @@ add_html_page(page_xhtml_source = test_html,
               page_title = 'API Test',
               page_custom_url = 'api-test',
               overwrite=TRUE)
-#> Overwriting Existing Page with URL https://sites.google.com/site/sitesrtest/api-test
+#> Auto-refreshing stale OAuth token.
+#> Creating New Page
 #> Successfully Created Page Skeleton
 #> Replacing Links to Local Files
 #> Successfully Added All Page Content

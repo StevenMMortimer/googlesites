@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with googlesites"
 author: "Steven Mortimer"
-date: "`r Sys.Date()`"
+date: "2018-03-27"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -31,8 +31,10 @@ options allow you to edit the site without specifying it explicitly on each requ
 
 ```{r load-package}
 library(googlesites)
-options(googlesites.site_domain = "site")
-options(googlesites.site_name = "sitesrtest")
+# set the name of your domain and site
+# this is required so the package knows which site to update
+options(googlesites.site_domain = "site") # or your Apps domain
+options(googlesites.site_name = "my-site")
 ```
 
 Second, you need to use the `googleAuthR` package to get your OAuth2.0 token 
@@ -44,16 +46,21 @@ it will use the cached `.httr-oauth` file instead of making you do it interactiv
 
 ```{r authenticate, eval=FALSE}
 library(googleAuthR)
+options(googleAuthR.client_id = getOption("googlesites.client_id"))
+options(googleAuthR.client_secret = getOption("googlesites.client_secret"))
 options(googleAuthR.scopes.selected = "https://sites.google.com/feeds/")
 gar_auth()
 ```
 
 ```{r authenticate2, include=FALSE, warning=FALSE, message=FALSE}
+options(googlesites.site_domain = "site")
+options(googlesites.site_name = "sitesrtest")
 library(googleAuthR)
+options(googleAuthR.client_id = getOption("googlesites.client_id"))
+options(googleAuthR.client_secret = getOption("googlesites.client_secret"))
 options(googleAuthR.scopes.selected = "https://sites.google.com/feeds/")
-options(googleAuthR.httr_oauth_cache = file.path("..", "tests", "testthat", "token.rds"))
-token_path <- file.path("..", "tests", "testthat", "token.rds")
-gar_auth(token=token_path)
+this_token <- readRDS(file.path("..", "tests", "testthat", "googlesites_token.rds"))
+gar_auth(this_token)
 ```
 
 ### Adding a Page
@@ -193,4 +200,4 @@ Thats it! You can use these functions to automatically upload content and manage
 your Google Site. The beautiful thing is that you can version control the contents 
 and repush any content as needed without fussing with the Web UI. It's recommended 
 that you keep your site files all in one folder so you can keep track of them all. 
-There is an example site folder bundled with the package and available [here](https://github.com/ReportMort/googlesites/tree/master/inst/extdata/example-site).
+There is an example site folder bundled with the package and available [here](https://github.com/StevenMMortimer/googlesites/tree/master/inst/extdata/example-site).

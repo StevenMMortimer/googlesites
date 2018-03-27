@@ -1,0 +1,24 @@
+title: googlesites
+url: https://stevenmmortimer.github.io/googlesites/
+template:
+  params:
+    bootswatch: spacelab
+    ganalytics: UA-98603021-1
+
+home:
+  strip_header: true
+  
+navbar:
+  type: default
+  left:
+    - text: "Articles"
+      menu: 
+      -  text: Getting Started
+         href: articles/getting-started-with-googlesites.html
+    - text: Reference
+      href: reference/index.html
+    - text: News
+      href: news/index.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/StevenMMortimer/googlesites
